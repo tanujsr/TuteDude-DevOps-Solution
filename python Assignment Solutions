@@ -1,0 +1,135 @@
+1. Grade Checker
+Take a score as input and print the grade based on the following:
+90+ : "A"
+80-89 : "B"
+70-79 : "C"
+60-69 : "D"
+Below 60 : "F"
+here we used a basic if else statement to carry out marks and all.
+Solution:- 
+def calculate_grade(score):
+  if score >= 90:
+    return "A"
+  elif score >= 80:
+    return "B"
+  elif score >= 70:
+    return "C"
+  elif score >= 60:
+    return "D"
+  else:
+    return "F"
+
+# Get input from the user
+try:
+  score = float(input("Enter the score: "))
+  
+  # Validate the score is within a typical range (optional but good practice)
+  if 0 <= score <= 100:
+    grade = calculate_grade(score)
+    print(f"The grade is: {grade}")
+  else:
+    print("Please enter a score between 0 and 100.")
+except ValueError:
+  print("Invalid input. Please enter a number.")
+Question 2
+2 Student Grades
+Create a dictionary where the keys are student names and the values are their grades. Allow the user to:
+Add a new student and grade.
+Update an existing student’s grade.
+Print all student grades
+Solution:- 
+def manage_student_grades():
+    """
+    Manages student grades using a dictionary, allowing adding, updating,
+    and printing grades.
+    """
+    student_grades = {}
+
+    while True:
+        print("\n--- Student Grade Management ---")
+        print("1. Add new student and grade")
+        print("2. Update existing student's grade")
+        print("3. Print all student grades")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            name = input("Enter student name: ")
+            try:
+                grade = float(input(f"Enter grade for {name}: "))
+                student_grades[name] = grade
+                print(f"Grade for {name} added successfully.")
+            except ValueError:
+                print("Invalid grade. Please enter a numeric value.")
+        elif choice == '2':
+            name = input("Enter student name to update: ")
+            if name in student_grades:
+                try:
+                    new_grade = float(input(f"Enter new grade for {name}: "))
+                    student_grades[name] = new_grade
+                    print(f"Grade for {name} updated successfully.")
+                except ValueError:
+                    print("Invalid grade. Please enter a numeric value.")
+            else:
+                print(f"Student '{name}' not found.")
+        elif choice == '3':
+            if student_grades:
+                print("\n--- All Student Grades ---")
+                for name, grade in student_grades.items():
+                    print(f"{name}: {grade}")
+            else:
+                print("No student grades to display.")
+        elif choice == '4':
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+# Run the grade management system
+manage_student_grades()
+
+Question 3 -> 
+3.Write to a File
+Write a program to create a text file and write some content to it.
+
+Using file functions like write and open
+Solution-> 
+# Define the filename
+filename = "my_new_file.txt"
+
+# Content to write to the file
+content_to_write = "Hello, this is the first line.\n" \
+                   "This is the second line of content.\n" \
+                   "And this is the final line."
+
+# Open the file in write mode ('w') using a 'with' statement
+# The 'with' statement ensures the file is automatically closed,
+# even if errors occur.
+try:
+    with open(filename, 'w') as file_object:
+        # Write the content to the file
+        file_object.write(content_to_write)
+    print(f"Content successfully written to '{filename}'")
+
+except IOError as e:
+    print(f"An error occurred while writing to the file: {e}")
+Question 4-> 4. Read from a File
+We used open in read mode and file.read to read and print to display.
+Solution-> 
+  # Create a dummy file for demonstration
+with open("sample.txt", "w") as f:
+    f.write("This is a sample line.\n")
+    f.write("This is another line.")
+
+# Open the file in read mode
+file_object = open("sample.txt", "r")
+
+# Read the entire content of the file
+file_content = file_object.read()
+
+# Print the content
+print(file_content)
+
+# Close the file
+file_object.close()
